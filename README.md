@@ -36,19 +36,17 @@ Prediction Images → Streamlit Display
 ## 📂 Repository Structure
 
 Project_xView2/ 
-│ └── app/                                \# Streamlit application\
+│ └── app/                                \# Streamlit application
 │     ├── ds_project_homepage.py\
 │     ├── overview.py\
 │     ├── damage_estimator.py\
 │     ├── model_page.py\
 │     ├── past_disasters.py\
-│     └── config.toml\
-│ └── src/                                \# Core scripts\
-│     ├── .py\
-│     ├── .py\
-│     ├── .py\
-│     └── .py\
-│ ├── data/                               \# Traingin data not included in repository !!
+│     ├── config.toml\
+│     └── imgs/                           \# Images used for the application
+│ └── src/                                \# Core scripts
+│     └── main.ipynb\
+│ ├── data/                               \# Training data not included in repository !!
 │ └── utils/
 │     ├── augmenter.ipynb\                \# Data augmentation script to increase training data quantity
 │     ├── create_labels_from_json.ipynb\  \# Script to convert geospatial building annotations into a segmentation mask image for training your damage model.
@@ -87,30 +85,6 @@ Dataset is **not included** in this repository.
 
 ------------------------------------------------------------------------
 
-## 🚀 Running the Streamlit App
-
-### 1️⃣ Create virtual environment
-
-python -m venv venv\
-source venv/bin/activate (Mac/Linux)\
-venv`\Scripts`{=tex}`\activate      `{=tex}(Windows)
-
-### 2️⃣ Install dependencies
-
-pip install -r requirements.txt
-
-### 3️⃣ Configure API endpoints
-
-Create `.streamlit/secrets.toml`:
-
-PRED_URL = "http://your-backend-url/predict"\
-PRED_MASK = "http://your-backend-url/predict_mask"
-
-### 4️⃣ Run the application
-
-streamlit run app/Home.py
-
-------------------------------------------------------------------------
 
 ## 🖥️ Application Features
 
