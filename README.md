@@ -36,21 +36,21 @@ Prediction Images → Streamlit Display
 ## 📂 Repository Structure
 
 Project_xView2/ 
-│ └── app/                                \# Streamlit application
+│ └── app/                                \# Streamlit application\
 │     ├── ds_project_homepage.py\
 │     ├── overview.py\
 │     ├── damage_estimator.py\
 │     ├── model_page.py\
 │     ├── past_disasters.py\
 │     ├── config.toml\
-│     └── imgs/                           \# Images used for the application
-│ └── src/                                \# Core scripts
+│     └── imgs/                           \# Images used for the application\
+│ └── src/                                \# Core scripts\
 │     └── main.ipynb\
-│ ├── data/                               \# Training data not included in repository !!
+│ ├── data/                               \# Training data not included in repository !!\
 │ └── utils/
-│     ├── augmenter.ipynb\                \# Data augmentation script to increase training data quantity
-│     ├── create_labels_from_json.ipynb\  \# Script to convert geospatial building annotations into a segmentation mask image for training your damage model.
-│     ├── read_training_log.ipynb\        \# Script to read output training logs and plot figures
+│     ├── augmenter.ipynb\                \# Data augmentation script to increase training data quantity\
+│     ├── create_labels_from_json.ipynb\  \# Script to convert geospatial building annotations into a segmentation mask image for training your damage model.\
+│     ├── read_training_log.ipynb\        \# Script to read output training logs and plot figures\
 │     └── figures/
 │         ├── f1_score.png\
 │         ├── accuracy.png\
