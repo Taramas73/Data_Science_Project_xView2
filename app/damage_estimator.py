@@ -5,6 +5,10 @@ import requests
 from os import path, environ
 import pandas as pd
 
+import streamlit as st
+
+st.write("Secrets keys:", list(st.secrets.keys()))
+
 def get_byte_img_shape(image: bytes):
     img_full_byte = np.array(bytearray(image), dtype=np.uint8)
     img_full_cv = cv2.imdecode(img_full_byte, 1)
