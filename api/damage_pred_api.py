@@ -10,7 +10,7 @@ from typing import List
 from os import path, environ
 
 IMG_SIZE = (256, 256)
-MODEL_PATH = environ.get("MODEL_PATH", "../models/")
+MODEL_PATH = environ.get("MODEL_PATH", "models")
 MODEL_FILE = environ.get("MODEL_FILE", "unet_v11_multiclass_epoch_20.h5")
 MODEL = path.join(MODEL_PATH, MODEL_FILE)
 
