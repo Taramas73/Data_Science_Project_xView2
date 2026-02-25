@@ -5,9 +5,12 @@ import requests
 from os import path, environ
 import pandas as pd
 
-import streamlit as st
+PRED_URL = st.secrets.get("PRED_URL")
+PRED_MASK = st.secrets.get("PRED_MASK")
 
-st.write("Secrets keys:", list(st.secrets.keys()))
+if not PRED_URL or not PRED_MASK:
+    st.error("Missing API endpoints. Add PRED_URL and PRED_MASK in Streamlit Cloud → Manage app → Settings → Secrets.")
+    st.stop()
 
 def get_byte_img_shape(image: bytes):
     img_full_byte = np.array(bytearray(image), dtype=np.uint8)
@@ -96,11 +99,11 @@ if post_disaster_url:
     col4.image(file_response.content, channels="BGR")
 
 # Prédiction
-if col1.button("Predict from file"):
+if col1.button("Predict from file", disabled=(pre_bytes is None or post_bytes is None)):
     # Send a POST request to the API
     files = [('files', pre_bytes), ('files', post_bytes)]
     
-    response = requests.post(st.secrets['PRED_URL'], files=files)
+    response = requests.post(PRED_URL, files=files, timeout=60)
     
     if response.status_code == 200:
         col5, col6= tab1.columns(2)
@@ -108,7 +111,7 @@ if col1.button("Predict from file"):
         mask = resized_response(response.content, pc_width, pc_height)
         col5.image(mask, channels="BGR")
 
-        m_resp = requests.post(st.secrets['PRED_MASK'], files=files)
+        m_resp = requests.post(PRED_MASK, files=files)
         if m_resp.status_code == 200:
             col6.success("Mask")
             mask = resized_response(m_resp.content, pc_width, pc_height)
@@ -134,7 +137,7 @@ if tab2.button("Predict from URL"):
     # Send a POST request to the API
     files = [('files', pre_disaster_image_bytes), ('files', post_disaster_image_bytes)]
     
-    response = requests.post(st.secrets['PRED_URL'], files=files)
+    response = requests.post(PRED_URL, files=files, timeout=60)
     
     if response.status_code == 200:
         col7, col8 = tab2.columns(2)
@@ -142,7 +145,7 @@ if tab2.button("Predict from URL"):
         mask = resized_response(response.content, width, height)
         col7.image(mask, channels="BGR")
 
-        m_resp = requests.post(st.secrets['PRED_MASK'], files=files)
+        m_resp = requests.post(PRED_MASK, files=files)
         if m_resp.status_code == 200:
             col8.success("Mask")
             mask = resized_response(m_resp.content, width, height)
@@ -175,7 +178,7 @@ if dual_disaster_url:
         col15.image(pre, channels="BGR")
         col16.image(post, channels="BGR")
     
-        response = requests.post(st.secrets['PRED_URL'], files=files)
+        response = requests.post(PRED_URL, files=files, timeout=60)
     
         if response.status_code == 200:
             col17, col18 = tab3.columns(2)
@@ -183,7 +186,7 @@ if dual_disaster_url:
             mask = resized_response(response.content, width, height)
             col17.image(mask)
 
-            m_resp = requests.post(st.secrets['PRED_MASK'], files=files)
+            m_resp = requests.post(PRED_MASK, files=files)
             if m_resp.status_code == 200:
                 col18.success("Mask")
                 mask = resized_response(m_resp.content, width, height)
@@ -202,7 +205,7 @@ if dual_disaster_url:
         col15.image(pre, channels="BGR")
         col16.image(post, channels="BGR")
     
-        response = requests.post(st.secrets['PRED_URL'], files=files)
+        response = requests.post(PRED_URL, files=files, timeout=60)
     
         if response.status_code == 200:
             col17, col18 = tab3.columns(2)
@@ -210,7 +213,7 @@ if dual_disaster_url:
             mask_cv = resized_response(response.content, width, height)
             col17.image(mask_cv, channels="BGR")
 
-            m_resp = requests.post(st.secrets['PRED_MASK'], files=files)
+            m_resp = requests.post(PRED_MASK, files=files)
             if m_resp.status_code == 200:
                 col18.success("Mask")
                 mask_cv = resized_response(m_resp.content, width, height)
