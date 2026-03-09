@@ -7,7 +7,7 @@ import pandas as pd
 
 PRED_URL = st.secrets.get("PRED_URL")
 PRED_MASK = st.secrets.get("PRED_MASK")
-
+st.markdown("#### The application might not be running due to render.com free plan limitations where the app is hosted ")
 if not PRED_URL or not PRED_MASK:
     st.error("Missing API endpoints. Add PRED_URL and PRED_MASK in Streamlit Cloud → Manage app → Settings → Secrets.")
     st.stop()
