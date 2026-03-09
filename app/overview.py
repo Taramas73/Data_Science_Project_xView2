@@ -3,7 +3,7 @@ import streamlit as st
 # -------------------- TITLE --------------------
 st.title("🌍 Project Overview")
 st.markdown("### Automated Building Damage Assessment using Satellite Imagery")
-st.markdown("# Author: Christos PAPADOPOULOS | March 2026")
+st.markdown("#### Author: Christos PAPADOPOULOS | March 2026")
 st.markdown("---")
 
 # -------------------- 1. CONTEXT --------------------
